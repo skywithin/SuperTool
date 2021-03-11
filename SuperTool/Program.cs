@@ -1,4 +1,5 @@
-﻿using McMaster.Extensions.CommandLineUtils;
+﻿using AutoMapper;
+using McMaster.Extensions.CommandLineUtils;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +11,9 @@ namespace SuperTool
     [Command(Name = "SuperTool", Description = "Run helpful utilities for my application")]
     [HelpOption]
     [VersionOptionFromMember(MemberName = nameof(GetVersion))]
-    [Subcommand(typeof(Features.When.Commands.WhenCommand))]
+    [Subcommand(
+        typeof(Features.When.Commands.WhenCommand),
+        typeof(Features.DoMath.Commands.DoMathCommand))]
     internal class Program
     {
         public Program() { }
@@ -26,7 +29,9 @@ namespace SuperTool
             return Host.CreateDefaultBuilder()
                        .ConfigureServices((hostContext, services) =>
                        {
-                           services.AddMediatR(typeof(Program).Assembly);
+                           services
+                                .AddMediatR(typeof(Program).Assembly)
+                                .AddAutoMapper(typeof(Program).Assembly);
 
                            // turn off the startup messages logged that we won't be using
                            services.PostConfigure<ConsoleLifetimeOptions>(options => options.SuppressStatusMessages = true);

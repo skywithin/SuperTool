@@ -20,7 +20,7 @@ namespace SuperTool.Features.DoMath
             [Option("-r|--right", CommandOptionType.SingleValue, Description = "Right side operand")]
             public double Right { get; set; }
 
-            private async Task OnExecute(IMediator mediator, IMapper mapper, IConsole console)
+            private async Task OnExecuteAsync(IMediator mediator, IMapper mapper, IConsole console)
             {
                 var command = mapper.Map<DoMath.Request>(this);
 

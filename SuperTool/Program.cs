@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Threading.Tasks;
 
 namespace SuperTool
@@ -20,6 +20,8 @@ namespace SuperTool
                        .ConfigureServices((hostContext, services) =>
                        {
                            services.AddHostedService<SuperToolHostedService>();
+
+                           services.AddMediatR(typeof(SuperToolHostedService).Assembly);
 
                            // turn off the startup messages logged that we won't be using
                            services.PostConfigure<ConsoleLifetimeOptions>(options => options.SuppressStatusMessages = true);

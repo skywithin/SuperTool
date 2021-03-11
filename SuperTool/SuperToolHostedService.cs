@@ -16,13 +16,11 @@ namespace SuperTool
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Hi from the command line!");
             return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Bye from the command line!");
             return Task.CompletedTask;
         }
     }

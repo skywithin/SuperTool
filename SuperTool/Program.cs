@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using System.Threading.Tasks;
 
+//https://www.garoyeri.dev/2019-12/command-line-tools-netcore-31/
+
 namespace SuperTool
 {
     [Command(Name = "SuperTool", Description = "Run helpful utilities for my application")]
